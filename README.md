@@ -48,15 +48,15 @@ You can install Postman via this website: https://www.postman.com/downloads/
     (You might want to use `cargo check` if you only need to verify your work without running the app.)
 
 ## Mandatory Checklists (Publisher)
--   [ ] Clone https://gitlab.com/ichlaffterlalu/bambangshop to a new repository.
+-   [x] Clone https://gitlab.com/ichlaffterlalu/bambangshop to a new repository.
 -   **STAGE 1: Implement models and repositories**
-    -   [ ] Commit: `Create Subscriber model struct.`
-    -   [ ] Commit: `Create Notification model struct.`
-    -   [ ] Commit: `Create Subscriber database and Subscriber repository struct skeleton.`
-    -   [ ] Commit: `Implement add function in Subscriber repository.`
-    -   [ ] Commit: `Implement list_all function in Subscriber repository.`
-    -   [ ] Commit: `Implement delete function in Subscriber repository.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
+    -   [x] Commit: `Create Subscriber model struct.`
+    -   [x] Commit: `Create Notification model struct.`
+    -   [x] Commit: `Create Subscriber database and Subscriber repository struct skeleton.`
+    -   [x] Commit: `Implement add function in Subscriber repository.`
+    -   [x] Commit: `Implement list_all function in Subscriber repository.`
+    -   [x] Commit: `Implement delete function in Subscriber repository.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
     -   [ ] Commit: `Create Notification service struct skeleton.`
     -   [ ] Commit: `Implement subscribe function in Notification service.`
@@ -77,7 +77,11 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+1. Single Model struct sudah cukup dikarenakan pada case BambangShop Subscriber hanya terdiri dari satu tipe saja, Sedangkan interface diperlukan jika observer yang kita memiliki banyak variasi.
 
+2. Dikarenakan id dan url unik, maka penerapan DashMap lebih disarankan karena dengan penerapan DashMap maka kita dapat lebih mudah dalam melakukan akses data dan manipulasi data dikarenakan pada DashMap kita dapat melakukan pengecekan apakah data kita unik atau tidak dengan mudah. Tidak seperti penggunaan vec yang lebih sulit bagi kita untuk mengetahui apakah data kita unik atau tidak, selain itu untuk akses data yang diinginkan, vec juga tidak seefisien DashMap karena pada DashMap kita dapat melakukan pemetaan antara key dan value sedangkan pada vec maka kita harus membuat vec 2 dimensi untuk menampung id dan url dan melakukan pengecekan satu-satu untuk mencari data yang diinginkan dan juga melakukan pengecekan satu-satu untuk mengetahui apakah id dan url unik.
+   
+3. Penggunaan DashMap diperlukan dikarenakan DashMap adalah struktur data yang dirancang khusus untuk konkurensi, sehingga menyediakan cara aman untuk menyimpan dan mengakses beberapa thread (thread safe). Penggunaan DashMap dapat membuat kita terhindari dari deadlock. Sedangkan singleton pattern digunakan untuk memastikan bahwa hanya ada satu instance di seleluruh aplikasi. Biasanya ini digunakan untuk membuat suatu objek global yang dapat diakses dari mana saja, tetapi dalam konteks thread-safe, singleton pattern mungkin saja mengalami masalah thread-safe. Dalam kasus ini penggunaan DashMap dalam SUBSCRIBER sudah benar karena DashMap dapat menjamin thread-safe.
 #### Reflection Publisher-2
 
 #### Reflection Publisher-3
