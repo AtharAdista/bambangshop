@@ -65,11 +65,11 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement unsubscribe function in Notification controller.`
     -   [x] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 -   **STAGE 3: Implement notification mechanism**
-    -   [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
-    -   [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
-    -   [ ] Commit: `Implement publish function in Program service and Program controller.`
-    -   [ ] Commit: `Edit Product service methods to call notify after create/delete.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
+    -   [x] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
+    -   [x] Commit: `Implement notify function in Notification service to notify each Subscriber.`
+    -   [x] Commit: `Implement publish function in Program service and Program controller.`
+    -   [x] Commit: `Edit Product service methods to call notify after create/delete.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
 
 ## Your Reflections
 This is the place for you to write reflections:
@@ -97,4 +97,8 @@ This is the place for you to write reflections:
 
 
 #### Reflection Publisher-3
+1. Dalam tutorial kali ini kita menggunakan push model, hal ini dapat kita lihat di notification.rs. Jadi setiap kita melakukan update data product maka publisher akan melakukan push data (mengirimkan data langsung) ke para subscriber, dalam kasus ini maka notification suatu produk akan dikirim kepada subscriber yang berlangganan.
 
+2. Jika kita lebih memilih menggunakan pull model, maka ada beberapa keuntungan yang kita dapatkan seperti subscriber akan memiliki kendali penuh kapan dan bagaimana data akan diambil, subscriber dapat hanya mengambil data kita diperlukan saja sehingga akan mengoptimalkan penggunaan sumber daya dan menghindari pembaruan yang tidak perlu, serta akan mengurangi beban publisher karena subscriber yang memiliki tanggung jawab untuk mengambil data ketika benar-benar diperlukan saja. Sementara itu, kerugian dari pull model adalah dapat menyebabkan overhead jaringan, terutama ketika subscriber sering meminta pembaruan data. Kerugian lainnya adalah kurang efisien karena data mungkin saja kurang real time dikarenakan dalam pull model subscriber harus aktif meminta pembaruan data dari publisher, sehingga subscriber mungkin tidak selalu mendapatkan data secara real time. Kerugian yang terakhir adalah penggunaan bandwith, model pull dapat menghabiskan bandwidth karena pengguna terus-menerus meminta pembaruan data, terutama jika ada banyak pengguna yang melakukan permintaan secara bersamaan. Hal ini dapat menyebabkan beban server yang tinggi.
+
+3. Jika kita tidak memakai multi-thread dalam fitur notification maka data akan dikirim satu-persatu secara berurutan sehingga akan menyebabkan terjadinya keterlambatan pengiriman notifikasi dan kinerja aplikasi akan menjadi lambat terutama apabila terdapat banyak notifikasi yang perlu dikirim, selain itu ika jumlah notifikasi yang harus dikirim tiba-tiba meningkat secara signifikan, maka tanpa multi-threading, aplikasi mungkin tidak mampu menangani beban tersebut dengan efisien. Fitur notifikasi tanpa multi-thread juga akan dapat menyebabkan adanya resiko bottlenecks, di mana satu tugas yang memakan waktu lama dapat menghambat proses pengiriman notifikasi keseluruhan. Dengan menerapkan multi-thread maka kita akan dapat mengirimkan notifikasi secara paralel sehingga akan lebih efisien dan masalah-masalah diatas dapat dihindari.
