@@ -58,12 +58,12 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement delete function in Subscriber repository.`
     -   [x] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
-    -   [ ] Commit: `Create Notification service struct skeleton.`
-    -   [ ] Commit: `Implement subscribe function in Notification service.`
-    -   [ ] Commit: `Implement subscribe function in Notification controller.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification service.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
+    -   [x] Commit: `Create Notification service struct skeleton.`
+    -   [x] Commit: `Implement subscribe function in Notification service.`
+    -   [x] Commit: `Implement subscribe function in Notification controller.`
+    -   [x] Commit: `Implement unsubscribe function in Notification service.`
+    -   [x] Commit: `Implement unsubscribe function in Notification controller.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 -   **STAGE 3: Implement notification mechanism**
     -   [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
     -   [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
@@ -82,6 +82,19 @@ This is the place for you to write reflections:
 2. Dikarenakan id dan url unik, maka penerapan DashMap lebih disarankan karena dengan penerapan DashMap maka kita dapat lebih mudah dalam melakukan akses data dan manipulasi data dikarenakan pada DashMap kita dapat melakukan pengecekan apakah data kita unik atau tidak dengan mudah. Tidak seperti penggunaan vec yang lebih sulit bagi kita untuk mengetahui apakah data kita unik atau tidak, selain itu untuk akses data yang diinginkan, vec juga tidak seefisien DashMap karena pada DashMap kita dapat melakukan pemetaan antara key dan value sedangkan pada vec maka kita harus membuat vec 2 dimensi untuk menampung id dan url dan melakukan pengecekan satu-satu untuk mencari data yang diinginkan dan juga melakukan pengecekan satu-satu untuk mengetahui apakah id dan url unik.
    
 3. Penggunaan DashMap diperlukan dikarenakan DashMap adalah struktur data yang dirancang khusus untuk konkurensi, sehingga menyediakan cara aman untuk menyimpan dan mengakses beberapa thread (thread safe). Penggunaan DashMap dapat membuat kita terhindari dari deadlock. Sedangkan singleton pattern digunakan untuk memastikan bahwa hanya ada satu instance di seleluruh aplikasi. Biasanya ini digunakan untuk membuat suatu objek global yang dapat diakses dari mana saja, tetapi dalam konteks thread-safe, singleton pattern mungkin saja mengalami masalah thread-safe. Dalam kasus ini penggunaan DashMap dalam SUBSCRIBER sudah benar karena DashMap dapat menjamin thread-safe.
+   
 #### Reflection Publisher-2
+1. "Service" dan "Repository" perlu dipisah agar kita dapat memenuhi prinsip single responsibility, yang dimana sebuah kelas hanya melakukan tugas sesuai dengan kelasnya saja (hanya memiliki satu tanggung jawab). Dengan melakukan hal ini maka kode kita nantinya akan mudah untuk di maintain. Pada MVC asli, "Model" melakukan semua hal yang terkait dengan data, mulai dari business logics, validations, bahkan sampai operasi penyimpanan data. Dengan memisahkan business logic ke "Service" dan operasi penyimpanan data ke "Repository", "Model" hanya bertaggung jawab sebagai "representative" atau struktur dari sekumpulan data, sehingga kode kita akan lebih clean dan lebih mudah di maintain nantinya karena terjadi sebuah pemiasahan yang jelas antar tiap bagiannya.
+
+2. Jika kita hanya menggunakan "Model" tanpa memisahkan ke "Service" dan "Repository maka "Model" melakukan semua hal yang terkait dengan data, mulai dari business logics, validations, bahkan sampai operasi penyimpanan data. Hal ini tentunya akan melanggar prinsip single responsibility, kode kita akan sulit di maintain, Kode kita juga akan meningkat complexitynya, kode kita fleksibilitasnya juga akan berkurang hal tersebut dikarenakan pemisahan antar bagian kurang jelas karena satu bagian melakukan banyak sekali hal yang berbeda. Misalnya jika kita menerapkan "Model" tanpa "Service" dan "Repository" pada (Program, Subscriber, Notification), maka "Model" akan melakukan banyak sekali hal yang berbeda mulai dari business logics, validations, bahkan sampai operasi penyimpanan data. Hal ini akan menyebabkan model menjadi sangat kompleks, kode akan saling terkait satu sama lain, sehingga jika melakukan perubahan atau penambahan fitur maka akan meningkatkan resiko terjadinya error karena keterkaitan satu sama lain yang sangat erat, keterkaitan ini akan membuat kode sulit untuk diperluas.
+
+3. Postman dapat membantu kita dalam melakukan pengecekan API, postman membantu dalam membuat permintaan HTTP ke endpoint API, postman dapat kita gunakan untuk pengecekan "GET", "POST", "PUT", "DELETE", "PATCH", dll., serta menambahkan paramater, header, dan body ke permintaan tersebut. Postman dapat membantu kita dalam melakukan simulasi apa yang terjadi ketika kita mengirimkan respons ke endpoint kita di berbagai lingkungan, sehingga memungkinkan kita untuk menguji API kita dalam berbagai kondisi dan konfigurasi. Fitur postman yang menarik bagi saya adalah:
+   
+   - Pengecekan method "GET", "POST, "PUT", "DELETE", dll, memanfaatkan HTTP request, selain itu bahkan kita dapat menambahkan paramater, header, dan body ke request tersebut.
+   - Membuat dokumentasi API berdasarkan API definition.
+   - Simulasi di lingkungan yang berbeda sehingga memungkinkan kita untuk menguji API kita dalam berbagai kondisi dan konfigurasi.
+   - Kita dapat membuat skrip pengujian otomatis untuk menguji endpoint API secara otomatis, sehingga kita dapat melakukan validasi fungsionalitas dengan cepat.
+
 
 #### Reflection Publisher-3
+
